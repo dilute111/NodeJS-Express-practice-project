@@ -1,0 +1,25 @@
+{
+  "name": "nodeJS-Express",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "main": "src/index.ts",
+  "repository": "https://github.com/dilute111/NodeJS-Express-practice-project.git",
+  "author": "dilute111 <loshock666@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

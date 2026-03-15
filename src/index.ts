@@ -5,11 +5,11 @@ const port = 3000
 app.get('/', (req, res) => {
     const a = 4
     if (a > 5) res.send('OK')
-    res.send('Hello World!!!!!')
+    res.send('Hello World!!!!')
 
 })
 app.get('/users', (req, res) => {
-    res.send('Hello Users!!!!!!')
+    res.send("Hello users!")
 })
 
 app.post('/users', (req, res) => {
