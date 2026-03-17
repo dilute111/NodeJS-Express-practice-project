@@ -3,6 +3,8 @@ import express from 'express'
 const app = express()
 const port = 3000
 
+app.use(express.json())
+
 const db = {
     courses: [
         {id: 1, title: "front-end"},
@@ -15,21 +17,21 @@ const db = {
 
 app.get('/', (req, res) => {
     res.json({message: "Hello world!!!"})
-
 })
+
 app.get('/users', (req, res) => {
     res.send("Hello users!")
 })
+
 app.get('/courses', (req, res) => {
     let filteredCourses = db.courses
         if (req.query.title) {
             filteredCourses = filteredCourses
                 .filter(c => c.title.indexOf(req.query.title as string) > -1)
         }
-
-
     res.json(filteredCourses)
 })
+
 app.get('/courses/:id', (req, res) => {
     let courseQuery = db.courses.find(c => c.id === +req.params.id);
     if (!courseQuery) {
@@ -37,6 +39,15 @@ app.get('/courses/:id', (req, res) => {
         return
     }
     res.json(courseQuery)
+})
+
+app.post('/courses', (req, res) => {
+    let newCourse = {
+        id: +(new Date()),
+        title: "unknown"
+    };
+    db.courses.push(newCourse)
+    res.json(newCourse)
 })
 
 app.post('/users', (req, res) => {
