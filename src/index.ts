@@ -44,10 +44,27 @@ app.get('/courses/:id', (req, res) => {
 app.post('/courses', (req, res) => {
     let newCourse = {
         id: +(new Date()),
-        title: "unknown"
+        title: req.body.title
     };
     db.courses.push(newCourse)
-    res.json(newCourse)
+    res.status(201).json(newCourse)
+})
+
+app.delete('/courses/:id', (req, res) => {
+    db.courses = db.courses.filter(c => c.id !== +req.params.id);
+
+    res.sendStatus(204)
+})
+
+
+app.put('/courses/:id', (req, res) => {
+    let courseQuery = db.courses.find(c => c.id === +req.params.id);
+    if (!courseQuery) {
+        res.sendStatus(404)
+        return
+    }
+    courseQuery.title = req.body.title
+    res.sendStatus(204)
 })
 
 app.post('/users', (req, res) => {
